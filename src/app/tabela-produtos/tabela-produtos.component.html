@@ -1,0 +1,27 @@
+<h2>{{titulo}}</h2>
+
+<label>Preco (Maior que):</label><br/>
+<input type="number" [(ngModel)]="preco"><br/>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>NOME</th>
+        <!-- <th>MARCA</th> -->
+        <th>PREÇO</th>
+        <!-- <th>VALIDADE</th> -->
+        <th colspan="2" style="text-align: center">AÇÕES</th>
+    </tr>
+    <tr *ngFor='let prod of (produtos|filtroPreco:preco)'>
+        <td>{{prod._id}}</td>
+        <td>{{prod.nome}}</td>
+        <!-- <td>{{prod.marca | uppercase}}</td> -->
+        <!-- <td>{{prod.preco | currency:'BRL'}}</td> -->
+        <td>{{prod.preco | moeda}}</td>
+        <!-- <td>{{prod.dataValidade | date:'dd/MM/yyyy'}}</td> -->
+        <td style="text-align: center"><a [routerLink]="'/edit/'+prod._id">Editar</a></td>
+        <td style="text-align: center"><a [routerLink]="'/tabela'" (click)="deletar(prod._id)">Excluir</a> </td>    
+    </tr>
+</table>
+
+<a routerLink="/novo">Novo Produto</a>
